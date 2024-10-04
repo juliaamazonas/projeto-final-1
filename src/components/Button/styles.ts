@@ -2,17 +2,35 @@ import styled from 'styled-components'
 import { cores } from '../../styles'
 import { Link } from 'react-router-dom'
 
-export const ButtonContainer = styled.button`
-  background-color: ${cores.secundaria};
+type ButtonProps = {
+  variant: 'add' | 'more'
+}
+
+export const ButtonContainer = styled.button<ButtonProps>`
+  background-color: ${(props) =>
+    props.variant === 'add' ? cores.secundaria : cores.principal};
+  color: ${(props) =>
+    props.variant === 'add' ? cores.principal : cores.secundaria};
   font-weight: 700;
   font-size: 14px;
-  padding: 4px 80px;
-  color: ${cores.principal};
+  text-align: center;
+  padding: ${(props) => (props.variant === 'add' ? '8px 16px' : '4px 12px')};
+  width: ${(props) => (props.variant === 'add' ? '300px' : '100px')};
+  border: none;
+  cursor: pointer;
 `
-export const ButtonLink = styled(Link)`
-  background-color: ${cores.secundaria};
+
+export const ButtonLink = styled(Link)<ButtonProps>`
+  display: inline-block;
+  padding: ${(props) => (props.variant === 'add' ? '8px 16px' : '4px 12px')};
+  margin-bottom: 8px;
+  width: ${(props) => (props.variant === 'add' ? '300px' : '100px')};
+  background-color: ${(props) =>
+    props.variant === 'add' ? cores.secundaria : cores.principal};
+  color: ${(props) =>
+    props.variant === 'add' ? cores.principal : cores.secundaria};
+  text-align: center;
   font-weight: 700;
   font-size: 14px;
-  padding: 4px 80px;
-  color: ${cores.principal};
+  text-decoration: none;
 `
