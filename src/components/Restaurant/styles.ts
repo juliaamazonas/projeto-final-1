@@ -35,10 +35,14 @@ export const Container = styled.div`
 
 export const TituloContainer = styled.div`
   display: flex;
+  max-width: 472px;
 `
 export const AvalicaoContainer = styled.div`
   display: flex;
-  margin-left: 310px;
+  position: absolute;
+  right: 8px;
+  bottom: 140px;
+
 
 
   img {
@@ -49,11 +53,11 @@ export const AvalicaoContainer = styled.div`
 `
 
 export const Titulo = styled.h3`
-  font-weigth: 700;
+  font-weight: 700;
   font-size: 18px;
-  display: block;
   margin-top: 8px;
   margin-bottom: 16px;
+  white-space: nowrap;
 `
 
 export const Descricao = styled.p`

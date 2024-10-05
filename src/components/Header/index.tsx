@@ -7,7 +7,7 @@ const Header = () => (
       <nav>
         <Links>
           <LinksItens>
-            <a href="#">Restaurantes</a>
+            <a href="/">Restaurantes</a>
           </LinksItens>
           <LinksItens>
             <img src={logo} alt="Efood" />
