@@ -8,6 +8,7 @@ function App() {
       <GlobalCSS />
       <BrowserRouter>
         <Rotas />
+        <Footer />
       </BrowserRouter>
     </>
   )
