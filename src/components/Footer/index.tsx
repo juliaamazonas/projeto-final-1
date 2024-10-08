@@ -2,29 +2,42 @@ import logo from '../../assets/images/logo.png'
 import instagram from '../../assets/images/instagram.png'
 import facebook from '../../assets/images/facebook.png'
 import twitter from '../../assets/images/twitter.png'
+import {
+  ContainerFooter,
+  ContainerLogo,
+  ContatosItens,
+  ContatosList,
+  Texto
+} from './styles'
 
 const Footer = () => (
-  <div>
+  <ContainerFooter>
     <div className="container">
-      <div>
+      <ContainerLogo>
         <img src={logo} alt="Efood" />
-      </div>
+      </ContainerLogo>
       <div>
-        <ul>
-          <li>
+        <ContatosList>
+          <ContatosItens>
             <img src={instagram} alt="Instagram" />
-          </li>
-          <li>
+          </ContatosItens>
+          <ContatosItens>
             <img src={facebook} alt="Facebook" />
-          </li>
-          <li>
+          </ContatosItens>
+          <ContatosItens>
             <img src={twitter} alt="Twitter" />
-          </li>
-        </ul>
+          </ContatosItens>
+        </ContatosList>
       </div>
-      <p>A efood é uma plataforma para divulgação de estabelecimentos, a responsabilidade pela entrega, qualidade dos produtos é toda do estabelecimento contratado. A efood é uma plataforma para divulgação de estabelecimentos, a responsabilidade pela entrega, qualidade dos produtos é toda do estabelecimento contratado. </p>
+      <Texto>
+        A efood é uma plataforma para divulgação de estabelecimentos, a
+        responsabilidade pela entrega, qualidade dos produtos é toda do
+        estabelecimento contratado. A efood é uma plataforma para divulgação de
+        estabelecimentos, a responsabilidade pela entrega, qualidade dos
+        produtos é toda do estabelecimento contratado.
+      </Texto>
     </div>
-  </div>
+  </ContainerFooter>
 )
 
 export default Footer
