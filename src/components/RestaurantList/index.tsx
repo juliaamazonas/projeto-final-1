@@ -1,4 +1,4 @@
-import Restaurantes from '../../models/Restaurantes'
+import { Restaurantes } from '../../pages/Home'
 import Restaurant from '../Restaurant'
 import { Container, List } from './styles'
 
@@ -7,6 +7,23 @@ type Props = {
 }
 
 const RestaurantList = ({ restaurantes }: Props) => {
+  const formataPreco = (preco: number) => {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(preco)
+  }
+
+  const getRestauranteTags = (restaurante: Restaurantes) => {
+    const tags = []
+
+    if (restaurante.destacado) {
+      tags.push('Destaque') // Adiciona a tag "Destaque"
+    }
+
+    return tags
+  }
+
   return (
     <Container>
       <div className="container">
@@ -14,13 +31,13 @@ const RestaurantList = ({ restaurantes }: Props) => {
           {restaurantes.map((restaurantes) => (
             <Restaurant
               key={restaurantes.id}
-              category={restaurantes.category}
-              description={restaurantes.description}
-              image={restaurantes.image}
-              infos={restaurantes.infos}
-              title={restaurantes.title}
+              category={restaurantes.tipo}
+              description={restaurantes.descricao}
+              image={restaurantes.capa}
+              title={restaurantes.titulo}
               avaliacao={restaurantes.avaliacao}
-              destaque={restaurantes.destaque}
+              destacado={restaurantes.destacado}
+              infos={getRestauranteTags(restaurantes)}
             />
           ))}
         </List>

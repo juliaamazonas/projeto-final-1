@@ -14,8 +14,8 @@ import Button from '../Button'
 type Props = {
   title: string
   category: string
-  avaliacao: string
-  destaque: string
+  avaliacao: number
+  destacado: boolean
   description: string
   infos: string[]
   image: string
@@ -25,7 +25,7 @@ const Restaurant = ({
   title,
   category,
   avaliacao,
-  destaque,
+  destacado,
   description,
   infos,
   image

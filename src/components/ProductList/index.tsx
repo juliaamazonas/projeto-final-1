@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import Pratos from '../../models/Pratos'
+import Modal from '../Modal'
 import Product from '../Product'
 import { Container, List } from './styles'
 
