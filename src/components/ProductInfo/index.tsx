@@ -10,6 +10,11 @@ const ProductInfo = () => {
         onClose={function (): void {
           throw new Error('Function not implemented.')
         }}
+        title={''}
+        description={''}
+        image={''}
+        porcao={''}
+        preco={0}
       />
     </div>
   )

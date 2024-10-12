@@ -3,6 +3,7 @@ import { cores } from '../../styles'
 import { TagContainer } from '../Tag/styles'
 
 export const Card = styled.div`
+  width: 472px;
   margin-bottom: 48px;
   margin-top: 80px;
   background-color: ${cores.branca};
@@ -12,6 +13,8 @@ export const Card = styled.div`
 
   img {
     width: 100%;
+    height: 216px;
+    object-fit: cover;
   }
 `
 export const Infos = styled.div`

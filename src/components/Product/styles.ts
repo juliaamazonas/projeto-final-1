@@ -5,9 +5,11 @@ export const Card = styled.div`
   margin-bottom: 48px;
   margin-top: 80px;
   background-color: ${cores.principal};
+  height: 338px;
 
   img {
     width: 100%;
+    height: 168px;
     padding: 8px;
   }
 `

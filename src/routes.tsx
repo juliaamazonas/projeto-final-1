@@ -6,8 +6,7 @@ import ProductInfo from './components/ProductInfo'
 const Rotas = () => (
   <Routes>
     <Route path="/" element={<Home />} />
-    <Route path="/perfil" element={<Perfil />} />
-    <Route path="/productinfo/:id" element={<ProductInfo />} />
+    <Route path="/perfil/:id" element={<Perfil />} />
   </Routes>
 )
 

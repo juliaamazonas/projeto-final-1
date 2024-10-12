@@ -18,7 +18,11 @@ const RestaurantList = ({ restaurantes }: Props) => {
     const tags = []
 
     if (restaurante.destacado) {
-      tags.push('Destaque') // Adiciona a tag "Destaque"
+      tags.push('Destaque da Semana') // Adiciona a tag "Destaque"
+    }
+
+    if (restaurante.tipo) {
+      tags.push(restaurante.tipo)
     }
 
     return tags
@@ -38,6 +42,7 @@ const RestaurantList = ({ restaurantes }: Props) => {
               avaliacao={restaurantes.avaliacao}
               destacado={restaurantes.destacado}
               infos={getRestauranteTags(restaurantes)}
+              id={restaurantes.id}
             />
           ))}
         </List>

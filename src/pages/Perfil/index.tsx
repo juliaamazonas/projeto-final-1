@@ -1,60 +1,34 @@
-import pizza from '../../assets/images/prato1-italiana.png'
+import { useEffect, useState } from 'react'
 import Header from '../../components/Header'
 import Banner from '../../components/Banner'
-import Pratos from '../../models/Pratos'
-import ProductList from '../../components/ProductList'
+import ProductList, { Restaurantes } from '../../components/ProductList'
+import { useParams } from 'react-router-dom'
 
-const cardapio: Pratos[] = [
-  {
-    id: 1,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: pizza,
-    title: 'Pizza Marguerita'
-  },
-  {
-    id: 2,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: pizza,
-    title: 'Pizza Marguerita'
-  },
-  {
-    id: 3,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: pizza,
-    title: 'Pizza Marguerita'
-  },
-  {
-    id: 4,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: pizza,
-    title: 'Pizza Marguerita'
-  },
-  {
-    id: 5,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: pizza,
-    title: 'Pizza Marguerita'
-  },
-  {
-    id: 6,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: pizza,
-    title: 'Pizza Marguerita'
-  }
-]
+const Perfil = () => {
+  const { id } = useParams<{ id: string }>()
+  const [restaurante, setRestaurante] = useState<Restaurantes | null>(null)
 
-const Perfil = () => (
-  <>
-    <Header />
-    <Banner />
-    <ProductList pratos={cardapio} />
-  </>
-)
+  useEffect(() => {
+    if (id) {
+      fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
+        .then((res) => res.json())
+        .then((data) => setRestaurante(data))
+    }
+  }, [id])
+
+  return (
+    <>
+      <Header />
+      {restaurante && (
+        <Banner
+          categoria={restaurante.tipo}
+          titulo={restaurante.titulo}
+          imagem={restaurante.cardapio[0]?.foto}
+        />
+      )}
+      {id && <ProductList restaurantId={id} />}
+    </>
+  )
+}
 
 export default Perfil

@@ -7,19 +7,27 @@ type Props = {
   title: string
   description: string
   image: string
+  porcao: string
+  preco: number
 }
 
-const Product = ({ title, description, image }: Props) => {
+const Product = ({ title, description, image, porcao, preco }: Props) => {
+  const getDescricao = (descricao: string) => {
+    if (descricao.length > 120) {
+      return descricao.slice(0, 117) + '...'
+    }
+    return descricao
+  }
+
   const [modalEstaAberto, setModalEstaAberto] = useState(false)
   return (
     <Card>
       <img src={image} alt={title} />
       <Container>
         <Titulo>{title}</Titulo>
-        <Descricao>{description}</Descricao>
+        <Descricao>{getDescricao(description)}</Descricao>
         <Button
           onClick={() => {
-            console.log('Botão clicado, modal deve abrir')
             setModalEstaAberto(true)
           }}
           type="button"
@@ -31,6 +39,11 @@ const Product = ({ title, description, image }: Props) => {
         </Button>
         {modalEstaAberto && (
           <Modal
+            title={title}
+            description={description}
+            image={image}
+            porcao={porcao}
+            preco={preco}
             className={modalEstaAberto ? 'visivel' : ''}
             onClose={() => setModalEstaAberto(false)}
           />

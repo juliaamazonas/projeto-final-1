@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import Hero from '../../components/Hero'
-import ProductsList from '../../components/RestaurantList'
 import RestaurantList from '../../components/RestaurantList'
 
 export type Restaurantes = {
@@ -24,18 +23,18 @@ export type Restaurantes = {
 }
 
 const Home = () => {
-  const [pratos, setPratos] = useState<Restaurantes[]>([])
+  const [restaurantes, setRestaurantes] = useState<Restaurantes[]>([])
 
   useEffect(() => {
     fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes')
       .then((res) => res.json())
-      .then((res) => setPratos(res))
+      .then((res) => setRestaurantes(res))
   }, [])
 
   return (
     <>
       <Hero />
-      <RestaurantList restaurantes={pratos} />
+      <RestaurantList restaurantes={restaurantes} />
     </>
   )
 }

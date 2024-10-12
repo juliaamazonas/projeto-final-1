@@ -1,10 +1,18 @@
-import { Categoria, Imagem, Titulo } from './styles'
+import { Categoria, Imagem, Overlay, Titulo } from './styles'
 
-const Banner = () => (
-  <Imagem>
+type BannerProps = {
+  categoria: string
+  titulo: string
+  imagem: string
+  styles?: React.CSSProperties
+}
+
+const Banner = ({ categoria, titulo, imagem }: BannerProps) => (
+  <Imagem style={{ backgroundImage: `url(${imagem})` }}>
+    <Overlay />
     <div className="container">
-      <Categoria>Italiana</Categoria>
-      <Titulo>La Dolce Vita Trattoria</Titulo>
+      <Categoria>{categoria}</Categoria>
+      <Titulo>{titulo}</Titulo>
     </div>
   </Imagem>
 )
