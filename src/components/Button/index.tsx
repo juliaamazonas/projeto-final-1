@@ -5,7 +5,7 @@ type Props = {
   title: string
   to?: string
   onClick?: () => void
-  children: string
+  children?: string
   variant?: 'add' | 'more'
 }
 

@@ -2,6 +2,7 @@ import { Key, useEffect, useState } from 'react'
 import Product from '../Product'
 import { Container, List } from './styles'
 import { useParams } from 'react-router-dom'
+import { useGetCardapioQuery } from '../../services/api'
 
 export type Cardapio = {
   foto: string
@@ -28,15 +29,10 @@ type Props = {
 }
 
 const ProductList = ({ restaurantId }: { restaurantId: string }) => {
-  const [restaurantes, setRestaurantes] = useState<Restaurantes[]>([])
-
-  useEffect(() => {
-    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes`)
-      .then((res) => res.json())
-      .then((res) => setRestaurantes(res))
-  }, [])
-
-  const restaurante = restaurantes.find((r) => r.id === Number(restaurantId))
+  const { data: restaurantes } = useGetCardapioQuery(restaurantId)
+  const restaurante = restaurantes?.find(
+    (rest) => rest.id === Number(restaurantId)
+  )
 
   return (
     <Container>
