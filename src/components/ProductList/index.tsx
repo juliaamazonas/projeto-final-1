@@ -48,6 +48,7 @@ const ProductList = ({ restaurantId }: { restaurantId: string }) => {
                   title={prato.nome}
                   porcao={prato.porcao}
                   preco={prato.preco}
+                  id={prato.id}
                 />
               ))}
             </List>

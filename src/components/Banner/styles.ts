@@ -25,7 +25,7 @@ export const Titulo = styled.h2`
   color: ${cores.branca};
   font-weight: 900;
   position: relative;
-  z-index: 2; /*
+  z-index: 2;
 `
 export const Categoria = styled.p`
   font-size: 32px;

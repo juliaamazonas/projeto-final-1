@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 
 export const ModalFundo = styled.div`
   position: fixed;
@@ -11,7 +11,7 @@ export const ModalFundo = styled.div`
   display: none;
   justify-content: center;
   align-items: center;
-  z-index: 1;
+  z-index: 10;
 
   &.visivel {
     display: flex;
@@ -30,6 +30,10 @@ export const ModalContainer = styled.div`
   img {
     width: 280px;
     height: 280px;
+  }
+
+  @media (max-width: ${breakpoints.desktop}) {
+    width: 90%;
   }
 `
 

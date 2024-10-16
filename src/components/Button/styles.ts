@@ -18,6 +18,14 @@ export const ButtonContainer = styled.button<ButtonProps>`
   width: ${(props) => (props.variant === 'add' ? '300px' : '100px')};
   border: none;
   cursor: pointer;
+
+  &.button-cart {
+    width: 344px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `
 
 export const ButtonLink = styled(Link)<ButtonProps>`

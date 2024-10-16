@@ -7,6 +7,7 @@ type Props = {
   onClick?: () => void
   children?: string
   variant?: 'add' | 'more'
+  className?: string
 }
 
 const Button = ({
@@ -15,7 +16,8 @@ const Button = ({
   to,
   onClick,
   children,
-  variant = 'add'
+  variant = 'add',
+  className
 }: Props) => {
   if (type === 'button') {
     return (
@@ -24,6 +26,7 @@ const Button = ({
         type="button"
         title={title}
         onClick={onClick}
+        className={className}
       >
         {children}
       </ButtonContainer>

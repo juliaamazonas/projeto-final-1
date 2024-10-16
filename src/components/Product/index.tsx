@@ -3,7 +3,8 @@ import { Card, Container, Descricao, Titulo } from './styles'
 import Button from '../Button'
 import Modal from '../Modal'
 
-type Props = {
+export type Produto = {
+  id: number
   title: string
   description: string
   image: string
@@ -11,7 +12,7 @@ type Props = {
   preco: number
 }
 
-const Product = ({ title, description, image, porcao, preco }: Props) => {
+const Product = ({ title, description, image, porcao, preco, id }: Produto) => {
   const getDescricao = (descricao: string) => {
     if (descricao.length > 120) {
       return descricao.slice(0, 117) + '...'
@@ -20,6 +21,16 @@ const Product = ({ title, description, image, porcao, preco }: Props) => {
   }
 
   const [modalEstaAberto, setModalEstaAberto] = useState(false)
+
+  const product = {
+    id,
+    title,
+    description,
+    image,
+    porcao,
+    preco
+  }
+
   return (
     <Card>
       <img src={image} alt={title} />
@@ -46,6 +57,7 @@ const Product = ({ title, description, image, porcao, preco }: Props) => {
             preco={preco}
             className={modalEstaAberto ? 'visivel' : ''}
             onClose={() => setModalEstaAberto(false)}
+            product={product}
           />
         )}
       </Container>

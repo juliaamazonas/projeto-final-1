@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 import { TagContainer } from '../Tag/styles'
 
 export const Card = styled.div`
@@ -15,6 +15,10 @@ export const Card = styled.div`
     width: 100%;
     height: 216px;
     object-fit: cover;
+  }
+
+  @media (max-width: ${breakpoints.desktop}) {
+    width: 100%;
   }
 `
 export const Infos = styled.div`
@@ -46,12 +50,18 @@ export const AvalicaoContainer = styled.div`
   right: 8px;
   bottom: 140px;
 
+   @media (max-width: ${breakpoints.desktop}) {
+    bottom: 30%;
+
+   }
 
 
   img {
     width: 20px;
     height: 20px;
     margin: 8px; 8px;
+
+
   }
 `
 
@@ -70,4 +80,8 @@ export const Descricao = styled.p`
   margin-bottom: 16px;
   margin-right: 8px;
   width: 456px;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    width: 100%;
+  }
 `

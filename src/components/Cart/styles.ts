@@ -3,31 +3,39 @@ import { cores } from '../../styles'
 
 export const CartConainter = styled.div`
   position: fixed;
-  display: flex;
+  display: none;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   justify-content: flex-end;
+  z-index: 9999;
+
+  &.is-open {
+    display: flex;
+  }
 `
 
 export const Overlay = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: #000;
   opacity: 0.7;
+  z-index: 9998;
 `
 
 export const CartAside = styled.aside`
-  display: block;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
   width: 360px;
   height: 100vh;
   background-color: ${cores.principal};
   color: ${cores.secundaria};
-  z-index: 1;
+  z-index: 9999;
 `
 export const ConteudoCart = styled.div`
   margin-top: 32px;
@@ -41,7 +49,7 @@ export const CartList = styled.ul`
   gap: 8px;
 `
 
-export const Item = styled.li`
+export const CartItem = styled.li`
   width: 344px;
   height: 100px;
   background-color: ${cores.secundaria};
@@ -60,14 +68,15 @@ export const ContainerItem = styled.div`
   div {
     width: 100%;
     margin-top: 8px;
-    display: flex; /* Define o container como flexível */
+    display: flex;
     flex-direction: column;
     position: relative;
 
     h4 {
       margin-bottom: 16px;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 900;
+      white-space: nowrap;
     }
 
     span {
@@ -80,5 +89,27 @@ export const ContainerItem = styled.div`
       align-self: flex-end;
       cursor: pointer;
     }
+  }
+`
+
+export const CartInfo = styled.div`
+  display: flex;
+
+  p {
+    font-size: 14px;
+    font-weight: 700;
+    margin-right: 214px;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    white-space: nowrap;
+  }
+
+  span {
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 40px;
+
+    margin-bottom: 16px;
+    white-space: nowrap;
   }
 `

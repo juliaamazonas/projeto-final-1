@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 import fundo from '../../assets/images/fundo-header.png'
 
 export const HeaderBar = styled.header`
@@ -24,14 +24,29 @@ export const HeaderBar = styled.header`
 export const Links = styled.ul`
   display: flex;
   align-items: center;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
 `
 export const LinksItens = styled.li`
   img {
     margin-left: 340px;
     width: 120px;
+
+    @media (max-width: ${breakpoints.desktop}) {
+      margin: 16px 0;
+    }
   }
 `
-export const LinkCart = styled.a`
+export const CartButton = styled.a`
   display: flex;
   margin-left: 194px;
+  cursor: pointer;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    margin: 0;
+  }
 `
