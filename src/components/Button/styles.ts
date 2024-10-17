@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 import { Link } from 'react-router-dom'
 
 type ButtonProps = {
@@ -25,6 +25,12 @@ export const ButtonContainer = styled.button<ButtonProps>`
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  &.button-card {
+    @media (max-width: ${breakpoints.desktop}) {
+      width: 100%;
+    }
   }
 `
 

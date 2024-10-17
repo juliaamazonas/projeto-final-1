@@ -51,9 +51,13 @@ export const AvalicaoContainer = styled.div`
   bottom: 140px;
 
    @media (max-width: ${breakpoints.desktop}) {
-    bottom: 30%;
+      bottom: 80px;
+    }
 
-   }
+   @media (max-width: ${breakpoints.tablet}) {
+      top: 215px;
+
+    }
 
 
   img {

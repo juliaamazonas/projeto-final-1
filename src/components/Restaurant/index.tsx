@@ -33,8 +33,8 @@ const Restaurant = ({
   image
 }: Props) => {
   const getDescricao = (descricao: string) => {
-    if (descricao.length > 234) {
-      return descricao.slice(0, 231) + '...'
+    if (descricao.length > 220) {
+      return descricao.slice(0, 217) + '...'
     }
     return descricao
   }

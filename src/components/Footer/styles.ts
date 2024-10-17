@@ -24,6 +24,10 @@ export const ContatosList = styled.ul`
 
 export const ContatosItens = styled.li`
   padding: 4px;
+
+  img {
+    cursor: pointer;
+  }
 `
 export const Texto = styled.p`
   font-size: 10px;

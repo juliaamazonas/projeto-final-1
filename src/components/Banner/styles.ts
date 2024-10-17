@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 
 export const Imagem = styled.div`
   width: 100%;
@@ -26,6 +26,10 @@ export const Titulo = styled.h2`
   font-weight: 900;
   position: relative;
   z-index: 2;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 28px;
+  }
 `
 export const Categoria = styled.p`
   font-size: 32px;

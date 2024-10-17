@@ -27,13 +27,30 @@ export const ModalContainer = styled.div`
   display: flex;
   position: relative;
 
+  @media (max-width: ${breakpoints.desktop}) {
+    width: 90%;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    text-align: center;
+    padding: 8px;
+    height: 35%;
+    display: block;
+  }
+
   img {
     width: 280px;
     height: 280px;
-  }
 
-  @media (max-width: ${breakpoints.desktop}) {
-    width: 90%;
+    @media (max-width: ${breakpoints.desktop}) {
+      max-width: 50%;
+      max-height: 50%;
+    }
+
+    @media (max-width: ${breakpoints.tablet}) {
+      width: 60%;
+      height: auto;
+    }
   }
 `
 
@@ -61,6 +78,12 @@ export const ModalInfo = styled.div`
     line-height: 21px;
     font-weight: 900;
     margin-bottom: 16px;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      font-size: 16px;
+
+      line-height: 16px;
+    }
   }
 
   p {
@@ -68,5 +91,10 @@ export const ModalInfo = styled.div`
     line-height: 22px;
     font-weight: 400;
     margin-bottom: 16px;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      line-height: 16px;
+      margin-bottom: 8px;
+    }
   }
 `

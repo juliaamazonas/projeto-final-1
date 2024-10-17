@@ -45,6 +45,7 @@ const Product = ({ title, description, image, porcao, preco, id }: Produto) => {
           title="Adicionar ao carrinho"
           to="/perfil"
           variant="add"
+          className="button-card"
         >
           Adicionar ao carrinho
         </Button>

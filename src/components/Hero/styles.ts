@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 import fundo from '../../assets/images/fundo-header.png'
 
 export const Header = styled.header`
@@ -36,5 +36,10 @@ export const ComponentesItens = styled.li`
     font-weight: 900;
     width: 540px;
     margin-bottom: 40px;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      font-size: 24px;
+      width: 100%;
+    }
   }
 `
