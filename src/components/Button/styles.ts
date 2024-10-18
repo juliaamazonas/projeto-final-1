@@ -27,6 +27,11 @@ export const ButtonContainer = styled.button<ButtonProps>`
     justify-content: center;
   }
 
+  &.button-form {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
   &.button-card {
     @media (max-width: ${breakpoints.desktop}) {
       width: 100%;

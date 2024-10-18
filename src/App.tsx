@@ -6,6 +6,7 @@ import Rotas from './routes'
 import Footer from './components/Footer'
 import { store } from './store'
 import Cart from './components/Cart'
+import Entrega from './components/Entrega'
 
 function App() {
   return (
