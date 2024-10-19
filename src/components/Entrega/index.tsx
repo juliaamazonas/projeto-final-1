@@ -12,28 +12,75 @@ import {
 
 const Entrega = ({ onBackToCart }: { onBackToCart: () => void }) => {
   const [formData, setFormData] = useState({
-    nome: '',
-    endereco: '',
-    cidade: '',
-    cep: '',
-    numero: '',
-    complemento: ''
+    delivery: {
+      receiver: '',
+      address: {
+        description: '',
+        city: '',
+        zipCode: '',
+        number: 0,
+        complement: ''
+      }
+    }
   })
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
+
     setFormData((prevData) => ({
       ...prevData,
-      [name]: name === 'numero' ? Number(value) : value
+      delivery: {
+        ...prevData.delivery,
+        address: {
+          ...prevData.delivery.address,
+          [name]: name === 'number' ? parseInt(value) : value
+        }
+      }
+    }))
+  }
+
+  const handleReceiverChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      delivery: {
+        ...prevData.delivery,
+        receiver: e.target.value
+      }
     }))
   }
 
   const handleSubmit = async () => {
-    const dataToSend = {
-      ...formData,
-      numero: Number(formData.numero)
+    console.log('Dados enviados:', formData)
+
+    const requestData = {
+      products: [
+        {
+          id: 1,
+          price: 0
+        }
+      ],
+      delivery: {
+        receiver: formData.delivery.receiver,
+        address: {
+          description: formData.delivery.address.description,
+          city: formData.delivery.address.city,
+          zipCode: formData.delivery.address.zipCode,
+          number: formData.delivery.address.number, // Certifique-se de que "number" é um número
+          complement: formData.delivery.address.complement
+        }
+      },
+      payment: {
+        card: {
+          name: 'Placeholder', // Valor temporário
+          number: '1111222233334444', // Valor temporário
+          code: 123, // Valor temporário
+          expires: {
+            month: 12,
+            year: 2025
+          }
+        }
+      }
     }
-    console.log('Dados enviados:', dataToSend)
     try {
       const response = await fetch(
         'https://fake-api-tau.vercel.app/api/efood/checkout',
@@ -42,14 +89,13 @@ const Entrega = ({ onBackToCart }: { onBackToCart: () => void }) => {
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(dataToSend)
+          body: JSON.stringify(requestData)
         }
       )
 
       if (response.ok) {
         const result = await response.json()
         console.log('Pedido concluído:', result)
-        // Aqui você pode adicionar a lógica para exibir a tela de confirmação do pedido
       } else {
         console.error('Erro ao concluir pedido')
       }
@@ -69,17 +115,17 @@ const Entrega = ({ onBackToCart }: { onBackToCart: () => void }) => {
               <label>Quem irá receber</label>
               <input
                 type="text"
-                name="nome"
-                value={formData.nome}
-                onChange={handleInputChange}
+                name="receiver"
+                value={formData.delivery.receiver}
+                onChange={handleReceiverChange}
               />
             </FormItens>
             <FormItens>
               <label>Endereço</label>
               <input
                 type="text"
-                name="endereco"
-                value={formData.endereco}
+                name="description"
+                value={formData.delivery.address.description}
                 onChange={handleInputChange}
               />
             </FormItens>
@@ -87,8 +133,8 @@ const Entrega = ({ onBackToCart }: { onBackToCart: () => void }) => {
               <label>Cidade</label>
               <input
                 type="text"
-                name="cidade"
-                value={formData.cidade}
+                name="city"
+                value={formData.delivery.address.city}
                 onChange={handleInputChange}
               />
             </FormItens>
@@ -98,8 +144,8 @@ const Entrega = ({ onBackToCart }: { onBackToCart: () => void }) => {
                   <label>CEP</label>
                   <input
                     type="text"
-                    name="cep"
-                    value={formData.cep}
+                    name="zipCode"
+                    value={formData.delivery.address.zipCode}
                     onChange={handleInputChange}
                   />
                 </div>
@@ -107,8 +153,8 @@ const Entrega = ({ onBackToCart }: { onBackToCart: () => void }) => {
                   <label>Número</label>
                   <input
                     type="number"
-                    name="numero"
-                    value={formData.numero}
+                    name="number"
+                    value={formData.delivery.address.number}
                     onChange={handleInputChange}
                   />
                 </div>
@@ -118,8 +164,8 @@ const Entrega = ({ onBackToCart }: { onBackToCart: () => void }) => {
               <label>Complemento (opcional) </label>
               <input
                 type="text"
-                name="complemento"
-                value={formData.complemento}
+                name="complement"
+                value={formData.delivery.address.complement}
                 onChange={handleInputChange}
               />
             </FormItens>
