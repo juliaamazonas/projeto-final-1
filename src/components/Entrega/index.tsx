@@ -65,15 +65,15 @@ const Entrega = ({ onBackToCart }: { onBackToCart: () => void }) => {
           description: formData.delivery.address.description,
           city: formData.delivery.address.city,
           zipCode: formData.delivery.address.zipCode,
-          number: formData.delivery.address.number, // Certifique-se de que "number" é um número
+          number: formData.delivery.address.number,
           complement: formData.delivery.address.complement
         }
       },
       payment: {
         card: {
-          name: 'Placeholder', // Valor temporário
-          number: '1111222233334444', // Valor temporário
-          code: 123, // Valor temporário
+          name: 'Placeholder',
+          number: '1111222233334444',
+          code: 123,
           expires: {
             month: 12,
             year: 2025

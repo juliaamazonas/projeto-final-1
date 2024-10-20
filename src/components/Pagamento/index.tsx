@@ -19,12 +19,12 @@ const Pagamento = () => (
             <input type="text" />
           </FormItens>
           <FormItens>
-            <div className="form-cartao">
-              <div className="form-cartao-number">
+            <div className="form-numbers">
+              <div>
                 <label>Número do cartão</label>
                 <input type="text" />
               </div>
-              <div className="form-cartao-codigo">
+              <div>
                 <label>CVV</label>
                 <input type="number" />
               </div>

@@ -42,9 +42,6 @@ export const PagamentoConteudo = styled.div`
 export const Form = styled.form`
   margin-top: 16px;
   margin-bottom: 24px;
-
-  }
-
 `
 
 export const FormItens = styled.div`
@@ -62,44 +59,8 @@ export const FormItens = styled.div`
     background-color: ${cores.secundaria};
   }
 
-  .form-cartao {
-    display: flex;
-    flex-direction: row; /* Alinha horizontalmente */
-    justify-content: space-between;
-    align-items: center; /* Certifica-se que os inputs fiquem alinhados no centro */
-
-    .form-cartao-number {
-      width: 228px; /* Largura específica para o número do cartão */
-
-      input {
-        width: 100%; /* O input ocupará toda a largura disponível */
-      }
-    }
-
-    .form-cartao-codigo {
-      width: 57px; /* Largura específica para o CVV */
-
-      input {
-        width: 100%; /* O input ocupará toda a largura disponível */
-      }
-    }
-  }
-
   .form-numbers {
     display: flex;
     justify-content: space-between;
-
-    div {
-      flex: 1;
-      margin-right: 8px;
-
-      &:last-child {
-        margin-right: 0;
-      }
-
-      input {
-        width: 100%;
-      }
-    }
   }
 `
