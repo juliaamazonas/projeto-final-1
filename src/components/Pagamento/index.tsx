@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Button from '../Button'
+import Confirmacao from '../Confimacao'
 import { Form, FormItens } from '../Entrega/styles'
 import {
   Overlay,
@@ -50,6 +51,9 @@ const Pagamento = ({
   const [cardYear, setCardYear] = useState('')
   const [paymentStatus, setPaymentStatus] = useState('')
 
+  const [pedidoId, setPedidoId] = useState<number | null>(null)
+  const [showConfirmacao, setShowConfirmacao] = useState(false)
+
   const handlePagamento = async () => {
     const requestData = {
       products,
@@ -82,6 +86,8 @@ const Pagamento = ({
 
       if (response.ok) {
         const data = await response.json()
+        setPedidoId(data.id)
+        setShowConfirmacao(true)
         setPaymentStatus('Pagamento realizado com sucesso!')
         console.log('Resposta da API:', data)
       } else {
@@ -96,85 +102,91 @@ const Pagamento = ({
   const totalValue = products.reduce((acc, product) => acc + product.price, 0)
 
   return (
-    <PagamentoConainter>
-      <Overlay />
-      <PagamentoAside>
-        <PagamentoConteudo>
-          <h4>Pagamento - Valor a {totalValue.toFixed(2)}</h4>
-          <Form>
-            <FormItens>
-              <label>Nome no cartão</label>
-              <input
-                type="text"
-                value={cardName}
-                onChange={(e) => setCardName(e.target.value)}
-              />
-            </FormItens>
-            <FormItens>
-              <div className="form-numbers">
-                <div>
-                  <label>Número do cartão</label>
+    <>
+      {showConfirmacao ? (
+        <Confirmacao pedidoId={pedidoId} />
+      ) : (
+        <PagamentoConainter>
+          <Overlay />
+          <PagamentoAside>
+            <PagamentoConteudo>
+              <h4>Pagamento - Valor a {totalValue.toFixed(2)}</h4>
+              <Form>
+                <FormItens>
+                  <label>Nome no cartão</label>
                   <input
                     type="text"
-                    value={cardNumber}
-                    onChange={(e) => setCardNumber(e.target.value)}
+                    value={cardName}
+                    onChange={(e) => setCardName(e.target.value)}
                   />
-                </div>
-                <div>
-                  <label>CVV</label>
-                  <input
-                    type="number"
-                    value={cardCVV}
-                    onChange={(e) => setCardCVV(e.target.value)}
-                  />
-                </div>
-              </div>
-            </FormItens>
-            <FormItens>
-              <div className="form-numbers">
-                <div>
-                  <label>Mês de vencimento</label>
-                  <input
-                    type="text"
-                    value={cardMonth}
-                    onChange={(e) => setCardMonth(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <label>Ano de vencimento</label>
-                  <input
-                    type="number"
-                    value={cardYear}
-                    onChange={(e) => setCardYear(e.target.value)}
-                  />
-                </div>
-              </div>
-            </FormItens>
-          </Form>
+                </FormItens>
+                <FormItens>
+                  <div className="form-numbers">
+                    <div>
+                      <label>Número do cartão</label>
+                      <input
+                        type="text"
+                        value={cardNumber}
+                        onChange={(e) => setCardNumber(e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <label>CVV</label>
+                      <input
+                        type="number"
+                        value={cardCVV}
+                        onChange={(e) => setCardCVV(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </FormItens>
+                <FormItens>
+                  <div className="form-numbers">
+                    <div>
+                      <label>Mês de vencimento</label>
+                      <input
+                        type="text"
+                        value={cardMonth}
+                        onChange={(e) => setCardMonth(e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <label>Ano de vencimento</label>
+                      <input
+                        type="number"
+                        value={cardYear}
+                        onChange={(e) => setCardYear(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </FormItens>
+              </Form>
 
-          {paymentStatus && <p>{paymentStatus}</p>}
+              {paymentStatus && <p>{paymentStatus}</p>}
 
-          <Button
-            type={'button'}
-            title={'Continuar com o pagamento'}
-            variant={'add'}
-            className="button-form"
-            onClick={handlePagamento}
-          >
-            Finalizar pagamento
-          </Button>
-          <Button
-            type={'button'}
-            title={'Voltar para o carrinho'}
-            variant={'add'}
-            className="button-form"
-            onClick={onBackToDelivery}
-          >
-            Voltar para a edição de endereço
-          </Button>
-        </PagamentoConteudo>
-      </PagamentoAside>
-    </PagamentoConainter>
+              <Button
+                type={'button'}
+                title={'Continuar com o pagamento'}
+                variant={'add'}
+                className="button-form"
+                onClick={handlePagamento}
+              >
+                Finalizar pagamento
+              </Button>
+              <Button
+                type={'button'}
+                title={'Voltar para o carrinho'}
+                variant={'add'}
+                className="button-form"
+                onClick={onBackToDelivery}
+              >
+                Voltar para a edição de endereço
+              </Button>
+            </PagamentoConteudo>
+          </PagamentoAside>
+        </PagamentoConainter>
+      )}
+    </>
   )
 }
 
