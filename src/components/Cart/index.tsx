@@ -1,4 +1,9 @@
+import { useDispatch, useSelector } from 'react-redux'
+import { RootReducer } from '../../store'
+import { useState } from 'react'
 import Button from '../Button'
+import Checkout from '../Checkout'
+import { close, remove } from '../../store/reducers/cart'
 import {
   CartConainter,
   ConteudoCart,
@@ -11,18 +16,13 @@ import {
 } from './styles'
 
 import lixeira from '../../assets/images/lixeira-de-reciclagem 1.png'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootReducer } from '../../store'
-import { close, remove } from '../../store/reducers/cart'
-import { useState } from 'react'
-import Entrega from '../Entrega'
 
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
 
   const dispatch = useDispatch()
 
-  const [showEntrega, setShowEntrega] = useState(false)
+  const [showCheckout, setShowCheckout] = useState(false)
 
   const closeCart = () => {
     dispatch(close())
@@ -34,17 +34,17 @@ const Cart = () => {
     dispatch(remove(id))
   }
 
-  const handleShowEntrega = () => {
-    setShowEntrega(true)
+  const handleShowCheckout = () => {
+    setShowCheckout(true)
   }
 
   const handleBackToCart = () => {
-    setShowEntrega(false)
+    setShowCheckout(false)
   }
 
   return (
     <>
-      <CartConainter className={isOpen && !showEntrega ? 'is-open' : ''}>
+      <CartConainter className={isOpen && !showCheckout ? 'is-open' : ''}>
         <Overlay onClick={closeCart} />
         <CartAside>
           <ConteudoCart>
@@ -75,14 +75,14 @@ const Cart = () => {
               title={'Continuar com a entrega'}
               variant={'add'}
               className="button-cart"
-              onClick={handleShowEntrega}
+              onClick={handleShowCheckout}
             >
               Continuar com a entrega
             </Button>
           </ConteudoCart>
         </CartAside>
       </CartConainter>
-      {showEntrega && <Entrega onBackToCart={handleBackToCart} />}
+      {showCheckout && <Checkout onBackToCart={handleBackToCart} />}
     </>
   )
 }

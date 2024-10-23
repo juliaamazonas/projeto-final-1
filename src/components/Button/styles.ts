@@ -37,6 +37,11 @@ export const ButtonContainer = styled.button<ButtonProps>`
       width: 100%;
     }
   }
+
+  &.button-confirmacao {
+    width: 344px;
+    font-size: 14px;
+  }
 `
 
 export const ButtonLink = styled(Link)<ButtonProps>`

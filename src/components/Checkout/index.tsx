@@ -1,24 +1,69 @@
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { RootReducer } from '../../store'
 import Entrega from '../Entrega'
 import Pagamento from '../Pagamento'
 
-const Checkout = () => {
-  const [step, setStep] = useState<'entrega' | 'pagamento'>('entrega')
+type Props = {
+  onBackToCart: () => void
+  deliveryData?: any
+}
 
-  const handleContinuarComPagamento = (valid: boolean) => {
+const Checkout = ({ onBackToCart, deliveryData }: Props) => {
+  const [showPagamento, setShowPagamento] = useState(false)
+  const [dadosEntrega, setDadosEntrega] = useState({
+    receiver: '',
+    address: {
+      description: '',
+      city: '',
+      zipCode: '',
+      number: 0,
+      complement: ''
+    }
+  })
+
+  const items = useSelector((state: RootReducer) => state.cart.items)
+  const products = items.map((item) => ({
+    id: item.id,
+    price: item.preco || 0
+  }))
+
+  const handleEntregaValidada = (valid: boolean, dadosEntrega?: any) => {
     if (valid) {
-      setStep('pagamento')
+      setShowPagamento(true)
     } else {
       alert('Dados de entrega inválidos')
     }
   }
 
+  const handleBackToDelivery = () => {
+    setShowPagamento(false)
+  }
+
   return (
     <div>
-      {step === 'entrega' ? (
-        <Entrega onContinue={handleContinuarComPagamento} />
+      {!showPagamento ? (
+        <Entrega
+          onContinue={handleEntregaValidada}
+          onBackToCart={onBackToCart}
+        />
       ) : (
-        <Pagamento />
+        <Pagamento
+          deliveryData={dadosEntrega}
+          onBackToDelivery={handleBackToDelivery}
+          products={products}
+          paymentData={{
+            card: {
+              name: '',
+              number: '',
+              code: 0,
+              expires: {
+                month: 0,
+                year: 0
+              }
+            }
+          }}
+        />
       )}
     </div>
   )

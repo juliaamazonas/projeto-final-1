@@ -6,7 +6,7 @@ import Rotas from './routes'
 import Footer from './components/Footer'
 import { store } from './store'
 import Cart from './components/Cart'
-import Pagamento from './components/Pagamento'
+import Confirmacao from './components/Confimacao'
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         <Rotas />
         <Footer />
         <Cart />
-        <Pagamento />
+        <Confirmacao />
       </BrowserRouter>
     </Provider>
   )

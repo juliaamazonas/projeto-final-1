@@ -10,7 +10,12 @@ import {
   Overlay
 } from './styles'
 
-const Entrega = ({ onBackToCart }: { onBackToCart: () => void }) => {
+interface EntregaProps {
+  onBackToCart: () => void
+  onContinue: (valid: boolean) => void
+}
+
+const Entrega = ({ onBackToCart, onContinue }: EntregaProps) => {
   const [formData, setFormData] = useState({
     delivery: {
       receiver: '',
@@ -51,6 +56,20 @@ const Entrega = ({ onBackToCart }: { onBackToCart: () => void }) => {
 
   const handleSubmit = async () => {
     console.log('Dados enviados:', formData)
+
+    const isValid =
+      formData.delivery.receiver &&
+      formData.delivery.address.description &&
+      formData.delivery.address.city &&
+      formData.delivery.address.zipCode &&
+      formData.delivery.address.number > 0
+
+    if (isValid) {
+      onContinue(true)
+    } else {
+      alert('Por favor, preencha todos os campos obrigatórios.')
+      onContinue(false)
+    }
 
     const requestData = {
       products: [

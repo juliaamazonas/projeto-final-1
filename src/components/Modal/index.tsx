@@ -1,6 +1,5 @@
 import { ModalFundo, ModalContainer, ModalInfo, CloseButton } from './styles'
-import pizza from '../../assets/images/prato1-italiana.png'
-import fechar from '../../assets/images/close.png'
+
 import Button from '../Button'
 import { useDispatch } from 'react-redux'
 import { add, open } from '../../store/reducers/cart'
