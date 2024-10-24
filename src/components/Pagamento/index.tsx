@@ -38,12 +38,7 @@ interface Props {
   onBackToDelivery: () => void
 }
 
-const Pagamento = ({
-  onBackToDelivery,
-  deliveryData,
-  products,
-  paymentData
-}: Props) => {
+const Pagamento = ({ onBackToDelivery, deliveryData, products }: Props) => {
   const [cardName, setCardName] = useState('')
   const [cardNumber, setCardNumber] = useState('')
   const [cardCVV, setCardCVV] = useState('')
@@ -51,7 +46,7 @@ const Pagamento = ({
   const [cardYear, setCardYear] = useState('')
   const [paymentStatus, setPaymentStatus] = useState('')
 
-  const [pedidoId, setPedidoId] = useState<number | null>(null)
+  const [pedidoId, setPedidoId] = useState<string | null>(null)
   const [showConfirmacao, setShowConfirmacao] = useState(false)
 
   const handlePagamento = async () => {
@@ -86,10 +81,10 @@ const Pagamento = ({
 
       if (response.ok) {
         const data = await response.json()
-        setPedidoId(data.id)
-        setShowConfirmacao(true)
         setPaymentStatus('Pagamento realizado com sucesso!')
-        console.log('Resposta da API:', data)
+        setShowConfirmacao(true)
+        setPedidoId(data.orderId)
+        console.log('Resposta da API:', data.orderId)
       } else {
         setPaymentStatus('Erro ao realizar o pagamento. Tente novamente.')
       }
@@ -110,7 +105,7 @@ const Pagamento = ({
           <Overlay />
           <PagamentoAside>
             <PagamentoConteudo>
-              <h4>Pagamento - Valor a {totalValue.toFixed(2)}</h4>
+              <h4>Pagamento - Valor a pagar {totalValue.toFixed(2)}</h4>
               <Form>
                 <FormItens>
                   <label>Nome no cartão</label>

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Button from '../Button'
 import {
   ConfirmacaoAside,
@@ -7,16 +8,30 @@ import {
 } from './styles'
 
 type Props = {
-  pedidoId: number | null
+  pedidoId: string | null
 }
 
 const Confirmacao = ({ pedidoId }: Props) => {
+  const [estaVisivel, setEstaVisivel] = useState(true)
+
+  const handleConcluir = () => {
+    setEstaVisivel(false)
+  }
+
+  if (!estaVisivel) {
+    return null
+  }
+
   return (
     <ConfirmacaoCOntainer>
       <Overlay />
       <ConfirmacaoAside>
         <ConfirmacaoConteudo>
-          <h3>Pedido realizado - {pedidoId}</h3>
+          {pedidoId ? (
+            <h3>Pedido realizado - {pedidoId}</h3>
+          ) : (
+            <h3>Erro: Não foi possível obter o número do pedido.</h3>
+          )}
           <p>
             Estamos felizes em informar que seu pedido já está em processo de
             preparação e, em breve, será entregue no endereço fornecido.
@@ -32,7 +47,12 @@ const Confirmacao = ({ pedidoId }: Props) => {
             Esperamos que desfrute de uma deliciosa e agradável experiência
             gastronômica. Bom apetite!
           </p>
-          <Button type={'button'} title={''} className="button-confirmacao">
+          <Button
+            type={'button'}
+            title={''}
+            className="button-confirmacao"
+            onClick={handleConcluir}
+          >
             Concluir
           </Button>
         </ConfirmacaoConteudo>
