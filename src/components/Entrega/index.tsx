@@ -1,4 +1,7 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+
+import { close } from '../../store/reducers/cart'
 
 import Button from '../Button'
 import {
@@ -16,6 +19,7 @@ interface EntregaProps {
 }
 
 const Entrega = ({ onBackToCart, onContinue }: EntregaProps) => {
+  const dispatch = useDispatch()
   const [formData, setFormData] = useState({
     delivery: {
       receiver: '',
@@ -123,9 +127,13 @@ const Entrega = ({ onBackToCart, onContinue }: EntregaProps) => {
     }
   }
 
+  const closeCart = () => {
+    dispatch(close())
+  }
+
   return (
     <EntregaConainter>
-      <Overlay />
+      <Overlay onClick={closeCart} />
       <EntregaAside>
         <ConteudoEntrega>
           <h4>Entrega</h4>

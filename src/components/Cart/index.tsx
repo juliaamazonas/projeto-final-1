@@ -35,7 +35,11 @@ const Cart = () => {
   }
 
   const handleShowCheckout = () => {
-    setShowCheckout(true)
+    if (items.length === 0) {
+      alert('O carrinho está vazio. Adicione itens antes de continuar.')
+    } else {
+      setShowCheckout(true)
+    }
   }
 
   const handleBackToCart = () => {

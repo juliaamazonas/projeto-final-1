@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { clear, close } from '../../store/reducers/cart'
 
 import Button from '../Button'
 
@@ -16,19 +18,25 @@ type Props = {
 
 const Confirmacao = ({ pedidoId, onOrderComplete }: Props) => {
   const [estaVisivel, setEstaVisivel] = useState(true)
+  const dispatch = useDispatch()
 
   const handleConcluir = () => {
     setEstaVisivel(false)
     onOrderComplete()
+    dispatch(clear())
   }
 
   if (!estaVisivel) {
     return null
   }
 
+  const closeCart = () => {
+    dispatch(close())
+  }
+
   return (
     <ConfirmacaoCOntainer>
-      <Overlay />
+      <Overlay onClick={closeCart} />
       <ConfirmacaoAside>
         <ConfirmacaoConteudo>
           {pedidoId ? (
