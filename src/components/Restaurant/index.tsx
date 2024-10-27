@@ -1,4 +1,8 @@
 import Tag from '../Tag'
+import Button from '../Button'
+
+import estrela from '../../assets/images/star_favorite-[#1499].png'
+
 import {
   AvalicaoContainer,
   Card,
@@ -8,8 +12,6 @@ import {
   Titulo,
   TituloContainer
 } from './styles'
-import estrela from '../../assets/images/star_favorite-[#1499].png'
-import Button from '../Button'
 
 type Props = {
   id: number
@@ -25,9 +27,9 @@ type Props = {
 const Restaurant = ({
   id,
   title,
-  category,
+
   avaliacao,
-  destacado,
+
   description,
   infos,
   image

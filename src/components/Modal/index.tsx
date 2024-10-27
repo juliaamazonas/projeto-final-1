@@ -1,8 +1,10 @@
-import { ModalFundo, ModalContainer, ModalInfo, CloseButton } from './styles'
+import { useDispatch } from 'react-redux'
 
 import Button from '../Button'
-import { useDispatch } from 'react-redux'
+
 import { add, open } from '../../store/reducers/cart'
+
+import { ModalFundo, ModalContainer, ModalInfo, CloseButton } from './styles'
 
 export interface Produto {
   id: number
@@ -25,17 +27,7 @@ type ModalProps = {
   product: Produto
 }
 
-const Modal = ({
-  title,
-  description,
-  image,
-  porcao,
-  preco,
-  className,
-  onClose,
-  product,
-  children
-}: ModalProps) => {
+const Modal = ({ preco, className, onClose, product }: ModalProps) => {
   const dispatch = useDispatch()
 
   const handleAddToCart = () => {

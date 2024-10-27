@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
 import Hero from '../../components/Hero'
 import RestaurantList from '../../components/RestaurantList'
+
 import { useGetFeaturedRestaurantQuery } from '../../services/api'
 
 export type Restaurantes = {

@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+
 import Header from '../../components/Header'
 import Banner from '../../components/Banner'
-import ProductList, { Restaurantes } from '../../components/ProductList'
-import { useParams } from 'react-router-dom'
+import ProductList from '../../components/ProductList'
+
 import { useGetRestaurantProfileQuery } from '../../services/api'
 
 const Perfil = () => {

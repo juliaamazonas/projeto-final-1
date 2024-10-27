@@ -1,8 +1,8 @@
-import { Key, useEffect, useState } from 'react'
 import Product from '../Product'
-import { Container, List } from './styles'
-import { useParams } from 'react-router-dom'
+
 import { useGetCardapioQuery } from '../../services/api'
+
+import { Container, List } from './styles'
 
 export type Cardapio = {
   foto: string
@@ -22,10 +22,6 @@ export type Restaurantes = {
   descricao: string
   capa: string
   cardapio: Cardapio[]
-}
-
-type Props = {
-  restaurantId: string
 }
 
 const ProductList = ({ restaurantId }: { restaurantId: string }) => {
