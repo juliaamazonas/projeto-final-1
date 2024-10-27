@@ -53,6 +53,11 @@ const Pagamento = ({ onBackToDelivery, deliveryData, products }: Props) => {
   const [showConfirmacao, setShowConfirmacao] = useState(false)
 
   const handlePagamento = async () => {
+    if (!cardName || !cardNumber || !cardCVV || !cardMonth || !cardYear) {
+      alert('Por favor, preencha todos os campos do formulário de pagamento.')
+      return
+    }
+
     const requestData = {
       products,
       delivery: deliveryData,
@@ -99,10 +104,18 @@ const Pagamento = ({ onBackToDelivery, deliveryData, products }: Props) => {
 
   const totalValue = products.reduce((acc, product) => acc + product.price, 0)
 
+  const handleOrderComplete = () => {
+    alert('Pedido concluído com sucesso!')
+    setShowConfirmacao(false)
+  }
+
   return (
     <>
       {showConfirmacao ? (
-        <Confirmacao pedidoId={pedidoId} />
+        <Confirmacao
+          pedidoId={pedidoId}
+          onOrderComplete={handleOrderComplete}
+        />
       ) : (
         <PagamentoConainter>
           <Overlay />

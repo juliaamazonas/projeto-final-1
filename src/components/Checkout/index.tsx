@@ -8,9 +8,10 @@ import Pagamento from '../Pagamento'
 type Props = {
   onBackToCart: () => void
   deliveryData?: any
+  onOrderComplete: () => void
 }
 
-const Checkout = ({ onBackToCart, deliveryData }: Props) => {
+const Checkout = ({ onBackToCart, deliveryData, onOrderComplete }: Props) => {
   const [showPagamento, setShowPagamento] = useState(false)
   const [dadosEntrega, setDadosEntrega] = useState({
     receiver: '',

@@ -11,13 +11,15 @@ import {
 
 type Props = {
   pedidoId: string | null
+  onOrderComplete: () => void
 }
 
-const Confirmacao = ({ pedidoId }: Props) => {
+const Confirmacao = ({ pedidoId, onOrderComplete }: Props) => {
   const [estaVisivel, setEstaVisivel] = useState(true)
 
   const handleConcluir = () => {
     setEstaVisivel(false)
+    onOrderComplete()
   }
 
   if (!estaVisivel) {

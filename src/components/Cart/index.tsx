@@ -3,7 +3,7 @@ import { RootReducer } from '../../store'
 import { useState } from 'react'
 import Button from '../Button'
 import Checkout from '../Checkout'
-import { close, remove } from '../../store/reducers/cart'
+import { close, remove, resetCart } from '../../store/reducers/cart'
 import {
   CartConainter,
   ConteudoCart,
@@ -39,6 +39,11 @@ const Cart = () => {
   }
 
   const handleBackToCart = () => {
+    setShowCheckout(false)
+  }
+
+  const handleOrderComplete = () => {
+    dispatch(resetCart())
     setShowCheckout(false)
   }
 
@@ -82,7 +87,12 @@ const Cart = () => {
           </ConteudoCart>
         </CartAside>
       </CartConainter>
-      {showCheckout && <Checkout onBackToCart={handleBackToCart} />}
+      {showCheckout && (
+        <Checkout
+          onBackToCart={handleBackToCart}
+          onOrderComplete={handleOrderComplete}
+        />
+      )}
     </>
   )
 }
